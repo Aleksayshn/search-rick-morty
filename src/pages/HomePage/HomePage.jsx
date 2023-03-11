@@ -8,7 +8,7 @@ export default function HomePage() {
   const [characters, setCharacters] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [totalResults, setTotalResults] = useState(0);
+  const [_, setTotalResults] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
 
