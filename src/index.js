@@ -10,7 +10,7 @@ const root = createRoot(rootElement);
 
 root.render(
   <StrictMode>
-    <BrowserRouter basename="/search-rick-morty/">
+    <BrowserRouter >
       <App />
     </BrowserRouter>
   </StrictMode>

@@ -11,6 +11,7 @@ export const getCharacters = async (page, signal) => {
     const { results, info: { pages } } = data;
     const characters = results;
     const totalPages = pages;
+    console.log(data);
 
     return { characters, totalPages };
   } catch (error) {
@@ -19,10 +20,9 @@ export const getCharacters = async (page, signal) => {
   }
 };
 
-export const getSearchedCharacters = async (query, page, signal) => {
+export const getSearchedCharacters = async (query, signal) => {
   const params = {
     name: query,
-    page,
   };
 
   try {

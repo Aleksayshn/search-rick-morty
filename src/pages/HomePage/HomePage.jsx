@@ -8,7 +8,6 @@ export default function HomePage() {
   const [characters, setCharacters] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [_, setTotalResults] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
 
@@ -36,7 +35,7 @@ export default function HomePage() {
     };
     getCards();
     return () => controller.abort();
-  }, [page]);
+  }, [page, setSearchParams, setLoading]);
 
 
   useEffect(() => {
@@ -47,14 +46,12 @@ export default function HomePage() {
         setLoading(true);
         const { characters, totalResults, cancel } = await getSearchedCharacters(
           query,
-          page,
           controller.signal
         );
         if (cancel) return;
         alertOnSearch(characters.length, totalResults);
-        if (totalResults === 0) return setSearchParams('');
-        setCharacters(prev => [...prev, ...characters]);
-        setTotalResults(totalResults);
+        setCharacters([...characters]);
+
       } catch (err) {
         setError(err);
       } finally {
@@ -64,7 +61,7 @@ export default function HomePage() {
 
     getCharacters();
     return () => controller.abort();
-  }, [page, query, setSearchParams]);
+  }, [query, setSearchParams, setLoading]);
 
 
   useEffect(() => {
@@ -74,22 +71,19 @@ export default function HomePage() {
   const searchFormSubmit = searchQuery => {
     const normalizedQuery = searchQuery.trim().toLowerCase();
     if (normalizedQuery === query) return alertOnRepeatedQuery(query);
-
     setSearchParams({ query: normalizedQuery });
-    setPage(1);
-    setTotalResults(0);
   };
 
   const onLoadMoreBtnClick = () => setPage(prevPage => prevPage + 1);
+
   return (
     <main>
       <Container>
-        <SearchForm onSubmit={searchFormSubmit} reseter={setCharacters} />
+        <SearchForm onSubmit={searchFormSubmit} />
         {loading && <Loader />}
         <Gallery characters={characters} path={'/'} />
-        {totalPages < 1 && <Gallery characters={characters} path={'/'} />}
-
-        {totalPages > 1 && <LoadButton onClick={onLoadMoreBtnClick} />}
+        {!characters.length && <Gallery characters={characters} path={'/'} />}
+        {page !== totalPages && <LoadButton onClick={onLoadMoreBtnClick} />}
       </Container>
     </main>
   );

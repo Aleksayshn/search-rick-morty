@@ -1,12 +1,15 @@
 import { toast } from 'react-toastify';
 
 export const alertOnSearch = (charactersLength, totalResults) => {
-  if (totalResults === 0) {
+  if (charactersLength === 0) {
     toast.error(
       'Sorry, there are no characters matching your search query. Please try again.'
     );
   }
-  if (totalResults !== 0) {
+  if (totalResults > 20) {
+    toast.info(`Refine your search`);
+  }
+  if (totalResults <= 20) {
     toast.info(`We have already found ${totalResults} characters!`);
   }
 };
