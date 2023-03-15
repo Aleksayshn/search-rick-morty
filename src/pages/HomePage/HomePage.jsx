@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { SearchForm, LoadButton, Gallery, Loader, Container } from 'components';
 import { getCharacters, alertOnError, getSearchedCharacters, alertOnSearch, alertOnRepeatedQuery } from 'services';
+import { Login } from 'components/Login/Login';
 
 export default function HomePage() {
   const [characters, setCharacters] = useState([]);
@@ -72,6 +73,7 @@ export default function HomePage() {
     const normalizedQuery = searchQuery.trim().toLowerCase();
     if (normalizedQuery === query) return alertOnRepeatedQuery(query);
     setSearchParams({ query: normalizedQuery });
+
   };
 
   const onLoadMoreBtnClick = () => setPage(prevPage => prevPage + 1);
@@ -79,6 +81,7 @@ export default function HomePage() {
   return (
     <main>
       <Container>
+        <Login />
         <SearchForm onSubmit={searchFormSubmit} />
         {loading && <Loader />}
         <Gallery characters={characters} path={'/'} />

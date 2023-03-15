@@ -1,9 +1,7 @@
 .Img {
   padding-top: 59px;
   margin: auto;
-  margin-bottom: 16px;
   width: 312px;
-  ;
   height: auto;
 }
 
@@ -11,29 +9,4 @@
   .Img {
     width: 600px;
   }
-}
-
-.navitem {
-  position: relative;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.17;
-
-
-}
-
-.navitem__login {
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.17;
-  text-transform: uppercase;
-  color: #000;
-  background-color: inherit;
-}
-
-.navlist {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
 }
