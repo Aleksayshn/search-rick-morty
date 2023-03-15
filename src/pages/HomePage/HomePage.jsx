@@ -51,7 +51,7 @@ export default function HomePage() {
         );
         if (cancel) return;
         alertOnSearch(characters.length, totalResults);
-        setCharacters([...characters]);
+        setCharacters(() => [...characters].sort((a, b) => a.name.localeCompare(b.name)));
 
       } catch (err) {
         setError(err);
