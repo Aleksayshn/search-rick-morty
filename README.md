@@ -1,9 +1,9 @@
-# React homework template
-https://github.com/goitacademy/react-homework-template.
+Characters gallery
 
-## themoviedb.org API
-** /trending/get-trending a list of the most popular movies for today to create a collection on the home page page.
-** /search/search-movies keyword search for a movie on the movies page.
-** /movies/get-movie-details Request full movie info for the movie page.
-** /movies/get-movie-credits Request cast info for the movie page.
-** /movies/get-movie-reviews requesting reviews for the movie page.
+## https://rickandmortyapi.com/documentation
+A React app page with a search form that allows users to search for items or information, and upon submitting the form, the app retrieves and displays relevant results. When a user clicks on a search result, they are directed to another route in the app to view detailed information about the item.
+
+In addition, the page includes Firebase authentication, allowing users to sign in with their credentials to access additional features or protected content.
+
+### React template
+https://github.com/goitacademy/react-homework-template.
